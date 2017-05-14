@@ -21,6 +21,119 @@
           "type": "keyword"
         }
       }
-    }  
+    },
+    "acteur": {
+    	"properties": {
+    		"dateNaissance": {
+    			"type": "date"
+    		},
+    		"dateDeces": {
+    			"type": "date"
+    		}			
+    	}
+    },
+     "mandat": {
+    	"properties": {
+    		"typeMandat": {
+    			"type": "keyword"
+    		},
+    		"legislature": {
+    			"type": "keyword"
+    		},
+			"typeOrgane": {
+    			"type": "keyword"
+    		},
+    		"dateDebut": { 
+	          "type": "date"
+	        },
+	        "datePublication": { 
+	          "type": "date"
+	        },
+	        "dateFin": { 
+	          "type": "date"
+	        }		
+    	}
+    },
+    "scrutin": {
+    	"properties": {
+    		"dateScrutin": { 
+	          "type": "date"
+	        },
+    		"typeVote": {
+    			"type": "keyword"
+    		},
+    		"adopte": {
+    			"type": "boolean"
+    		},
+			"modePublicationVotes": {
+				"type": "keyword"
+			},
+			"nbVotants": {
+    			"type": "integer"
+    		},
+    		"suffragesExprimes": {
+    			"type": "integer"
+    		},
+    		"suffragesRequis": {
+    			"type": "integer"
+    		},
+    		"votesPour": {
+    			"type": "integer"
+    		},
+    		"votesContre": {
+    			"type": "integer"
+    		},
+    		"abstention": {
+    			"type": "integer"
+    		},
+    		"nonVotants": {
+    			"type": "integer"
+    		}
+    	}
+    },
+    "votesGroupe": {
+    	"properties": {
+    		"organeRef": {
+    			"type": "keyword"
+    		},
+    		"nbMembresGroupe": {
+    			"type": "integer"
+    		},
+    		"positionMajoritaire": {
+    			"type": "keyword"
+    		},
+    		"votesPour": {
+    			"type": "integer"
+    		},
+    		"votesContre": {
+    			"type": "integer"
+    		},
+    		"nbAbstentions": {
+    			"type": "integer"
+    		},
+    		"nbNonVotants": {
+    			"type": "integer"
+    		}
+    	}
+    },
+     "vote": {
+    	"properties": {
+    		"acteurRef": {
+    			"type": "keyword"
+    		},
+    		"mandatRef": {
+    			"type": "keyword"
+    		},
+    		"positionVote": {
+    			"type": "keyword"
+    		},	
+    		"causePositionVote": {
+    			"type": "keyword"
+    		},	
+			"scrutinId": {
+    			"type": "keyword"
+    		}
+    	}
+    }
   }
 }
