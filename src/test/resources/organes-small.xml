@@ -1,0 +1,37 @@
+<export xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<organes>
+		<organe xsi:type="OrganeParlementaire_Type">
+			<uid>PO711218</uid>
+			<codeType>MISINFO</codeType>
+			<libelle>Formation des enseignants</libelle>
+			<libelleEdition>de la mission d'information sur la formation des
+				enseignants</libelleEdition>
+			<libelleAbrege>Formation des enseignants</libelleAbrege>
+			<libelleAbrev>FORMENS</libelleAbrev>
+			<viMoDe>
+				<dateDebut>2015-12-16</dateDebut>
+				<dateAgrement xsi:nil="true" />
+				<dateFin>2016-10-05</dateFin>
+			</viMoDe>
+			<regime>5ème République</regime>
+			<legislature>14</legislature>
+			<secretariat>
+				<secretaire01 xsi:nil="true" />
+				<secretaire02 xsi:nil="true" />
+			</secretariat>
+		</organe>
+		<organe xsi:type="OrganeExterne_Type">
+			<uid>PO76034</uid>
+			<codeType>CONSTITU</codeType>
+			<libelle>Conseil constitutionnel</libelle>
+			<libelleEdition>du Conseil constitutionnel</libelleEdition>
+			<libelleAbrege>Conseil constitutionnel</libelleAbrege>
+			<libelleAbrev>ASSEX</libelleAbrev>
+			<viMoDe>
+				<dateDebut>1959-02-01</dateDebut>
+				<dateAgrement xsi:nil="true" />
+				<dateFin xsi:nil="true" />
+			</viMoDe>
+		</organe>
+	</organes>
+</export>

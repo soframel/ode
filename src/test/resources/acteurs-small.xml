@@ -1,0 +1,318 @@
+<acteurs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<acteur>
+		<uid xsi:type="IdActeur_type">PA286166</uid>
+		<etatCivil>
+			<ident>
+				<civ>M.</civ>
+				<prenom>Christian</prenom>
+				<nom>Blanc</nom>
+				<alpha>Blanc Chr</alpha>
+			</ident>
+			<infoNaissance>
+				<dateNais>1942-05-17</dateNais>
+				<villeNais>Talence</villeNais>
+				<depNais>Gironde</depNais>
+				<paysNais xsi:nil="true" />
+			</infoNaissance>
+			<dateDeces xsi:nil="true" />
+		</etatCivil>
+		<profession>
+			<libelleCourant>Ancien président de sociétés publiques et privées,
+				ancien préfet</libelleCourant>
+			<socProcINSEE>
+				<catSocPro>Cadres de la fonction publique, professions
+					intellectuelles et artistiques</catSocPro>
+				<famSocPro>Cadres et professions intellectuelles supérieures
+				</famSocPro>
+			</socProcINSEE>
+		</profession>
+		<adresses />
+		<mandats>
+			<mandat xsi:type="MandatParlementaire_type">
+				<uid>PM386050</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>ASSEMBLEE</typeOrgane>
+				<dateDebut>2007-06-20</dateDebut>
+				<datePublication xsi:nil="true" />
+				<dateFin>2008-04-19</dateFin>
+				<preseance>50</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>membre</codeQualite>
+					<libQualite>membre</libQualite>
+					<libQualiteSex>membre</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO384266</organeRef>
+				</organes>
+				<suppleants>
+					<suppleant>
+						<dateDebut>2007-06-20</dateDebut>
+						<dateFin>2008-04-19</dateFin>
+						<suppleantRef>PA288865</suppleantRef>
+					</suppleant>
+				</suppleants>
+				<election>
+					<lieu>
+						<region>Ile-de-France</region>
+						<regionType>Métropolitain</regionType>
+						<departement>Yvelines</departement>
+						<numDepartement>78</numDepartement>
+						<numCirco>3</numCirco>
+					</lieu>
+					<causeMandat>élections générales</causeMandat>
+				</election>
+				<InfosHorsSIAN>
+					<HATVP_URI xsi:nil="true" />
+				</InfosHorsSIAN>
+				<mandature>
+					<datePriseFonction>2007-06-20</datePriseFonction>
+					<causeFin>Nomination comme membre du Gouvernement</causeFin>
+					<premiereElection>1</premiereElection>
+					<placeHemicycle xsi:nil="true" />
+					<mandatRemplaceRef xsi:nil="true" />
+				</mandature>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM387596</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>GP</typeOrgane>
+				<dateDebut>2007-06-20</dateDebut>
+				<datePublication xsi:nil="true" />
+				<dateFin>2007-06-26</dateFin>
+				<preseance>28</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Député non-inscrit</codeQualite>
+					<libQualite>Député non-inscrit</libQualite>
+					<libQualiteSex>Député non-inscrit</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO387155</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM389644</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>GP</typeOrgane>
+				<dateDebut>2007-06-27</dateDebut>
+				<datePublication>2007-06-27</datePublication>
+				<dateFin>2008-04-19</dateFin>
+				<preseance>20</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Membre</codeQualite>
+					<libQualite>Membre du</libQualite>
+					<libQualiteSex>Membre du</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO389639</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM390672</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>COMPER</typeOrgane>
+				<dateDebut>2007-06-27</dateDebut>
+				<datePublication>2007-06-28</datePublication>
+				<dateFin>2008-04-19</dateFin>
+				<preseance>32</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Membre</codeQualite>
+					<libQualite>Membre</libQualite>
+					<libQualiteSex>Membre</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO59047</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM393539</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>CNPS</typeOrgane>
+				<dateDebut>2007-07-24</dateDebut>
+				<datePublication>2007-07-24</datePublication>
+				<dateFin>2007-08-02</dateFin>
+				<preseance>20</preseance>
+				<nominPrincipale>0</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Membre</codeQualite>
+					<libQualite>Membre</libQualite>
+					<libQualiteSex>Membre</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO392640</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM393677</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>CNPS</typeOrgane>
+				<dateDebut>2007-07-24</dateDebut>
+				<datePublication>2007-07-25</datePublication>
+				<dateFin>2007-08-02</dateFin>
+				<preseance>8</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Vice-Président</codeQualite>
+					<libQualite>Vice-Président</libQualite>
+					<libQualiteSex>Vice-Président</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO392640</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM394229</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>CMP</typeOrgane>
+				<dateDebut>2007-08-02</dateDebut>
+				<datePublication>2007-08-03</datePublication>
+				<dateFin>2007-08-02</dateFin>
+				<preseance>28</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Suppléant</codeQualite>
+					<libQualite>Membre suppléant</libQualite>
+					<libQualiteSex>Membre suppléant</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO394215</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM401069</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>GA</typeOrgane>
+				<dateDebut>2007-10-24</dateDebut>
+				<datePublication xsi:nil="true" />
+				<dateFin>2008-04-19</dateFin>
+				<preseance>20</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Membre</codeQualite>
+					<libQualite>Membre</libQualite>
+					<libQualiteSex>Membre</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO392840</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM401200</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>GA</typeOrgane>
+				<dateDebut>2007-10-25</dateDebut>
+				<datePublication xsi:nil="true" />
+				<dateFin>2008-04-19</dateFin>
+				<preseance>20</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Membre</codeQualite>
+					<libQualite>Membre</libQualite>
+					<libQualiteSex>Membre</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO393478</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM405057</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>GA</typeOrgane>
+				<dateDebut>2007-12-04</dateDebut>
+				<datePublication xsi:nil="true" />
+				<dateFin>2008-04-19</dateFin>
+				<preseance>8</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Vice-Président</codeQualite>
+					<libQualite>Vice-Président</libQualite>
+					<libQualiteSex>Vice-Président</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO393478</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM406103</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>GA</typeOrgane>
+				<dateDebut>2007-12-12</dateDebut>
+				<datePublication xsi:nil="true" />
+				<dateFin>2008-04-19</dateFin>
+				<preseance>8</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Vice-Président</codeQualite>
+					<libQualite>Vice-Président</libQualite>
+					<libQualiteSex>Vice-Président</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO392840</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM411010</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature xsi:nil="true" />
+				<typeOrgane>MINISTERE</typeOrgane>
+				<dateDebut>2008-03-18</dateDebut>
+				<datePublication>2008-03-19</datePublication>
+				<dateFin>2010-07-04</dateFin>
+				<preseance>50</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Secrétaire d'État</codeQualite>
+					<libQualite>Secrétaire d'État</libQualite>
+					<libQualiteSex>Secrétaire d'État</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO410982</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatSimple_Type">
+				<uid>PM424814</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>GP</typeOrgane>
+				<dateDebut>2010-08-05</dateDebut>
+				<datePublication>2010-08-06</datePublication>
+				<dateFin>2010-09-02</dateFin>
+				<preseance>28</preseance>
+				<nominPrincipale>1</nominPrincipale>
+				<infosQualite>
+					<codeQualite>Député non-inscrit</codeQualite>
+					<libQualite>Député non-inscrit</libQualite>
+					<libQualiteSex>Député non-inscrit</libQualiteSex>
+				</infosQualite>
+				<organes>
+					<organeRef>PO387155</organeRef>
+				</organes>
+			</mandat>
+			<mandat xsi:type="MandatParlementaire_type">
+				<uid>PM424812</uid>
+				<acteurRef>PA286166</acteurRef>
+				<legislature>13</legislature>
+				<typeOrgane>ASSEMBLEE</typeOrgane>
+				<dateDebut>2007-06-20</dateDebut>
+				<datePublication>2007-06-11</datePublication>
+				<dateFin>2012-06-19</dateFin>
+				<preseance>50</preseance>
+				<nominPrincipale>1</nominPrincipale>
+			</mandat>
+		</mandats>
+	</acteur>
+</acteurs>

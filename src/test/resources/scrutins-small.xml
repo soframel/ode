@@ -1,0 +1,86 @@
+<scrutins>
+	<scrutin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<uid>VTANR5L14V1</uid>
+		<numero>1</numero>
+		<organeRef>PO644420</organeRef>
+		<legislature>14</legislature>
+		<sessionRef>SCR5A2012E1</sessionRef>
+		<seanceRef>RUANR5L14S2012IDS16433</seanceRef>
+		<dateScrutin>2012-07-03</dateScrutin>
+		<quantiemeJourSeance>1</quantiemeJourSeance>
+		<typeVote>
+			<codeTypeVote>SAT</codeTypeVote>
+			<libelleTypeVote>scrutin à la tribune</libelleTypeVote>
+			<typeMajorite>majorité absolue des suffrages exprimés</typeMajorite>
+		</typeVote>
+		<sort>
+			<code>adopté</code>
+			<libelle>l'Assemblée nationale a adopté</libelle>
+		</sort>
+		<titre>la déclaration de politique générale du gouvernement de
+			Jean-Marc Ayrault (application de l'article 49, alinéa premier de la
+			Constitution).</titre>
+		<demandeur>
+			<texte>Conférence des présidents</texte>
+			<referenceLegislative xsi:nil="true" />
+		</demandeur>
+		<objet>
+			<libelle>la déclaration de politique générale du gouvernement de
+				Jean-Marc Ayrault (application de l'article 49, alinéa premier de la
+				Constitution).</libelle>
+			<referenceLegislative xsi:nil="true" />
+		</objet>
+		<modePublicationDesVotes>DecompteNominatif</modePublicationDesVotes>
+		<syntheseVote>
+			<nombreVotants>544</nombreVotants>
+			<suffragesExprimes>527</suffragesExprimes>
+			<nbrSuffragesRequis>264</nbrSuffragesRequis>
+			<annonce>l'Assemblée nationale a adopté</annonce>
+			<decompte>
+				<pour>302</pour>
+				<contre>225</contre>
+				<abstention>17</abstention>
+				<nonVotant>26</nonVotant>
+			</decompte>
+		</syntheseVote>
+		<ventilationVotes>
+			<organe>
+				<organeRef>PO644420</organeRef>
+				<groupes>
+					<groupe>
+						<organeRef>PO656002</organeRef>
+						<nombreMembresGroupe>294</nombreMembresGroupe>
+						<vote>
+							<positionMajoritaire>pour</positionMajoritaire>
+							<decompteVoix>
+								<pour>267</pour>
+								<contre>0</contre>
+								<abstention>0</abstention>
+								<nonVotant>24</nonVotant>
+							</decompteVoix>
+							<decompteNominatif>
+								<nonVotants>
+									<votant>
+										<acteurRef>PA328</acteurRef>
+										<mandatRef>PM645184</mandatRef>
+										<causePositionVote>MG</causePositionVote>
+									</votant>
+								</nonVotants>
+								<pours>
+									<votant>
+										<acteurRef>PA356</acteurRef>
+										<mandatRef>PM645358</mandatRef>
+									</votant>
+									<votant>
+										<acteurRef>PA394</acteurRef>
+										<mandatRef>PM645447</mandatRef>
+									</votant>
+								</pours>
+							</decompteNominatif>
+						</vote>
+					</groupe>
+				</groupes>
+			</organe>
+		</ventilationVotes>
+	</scrutin>
+</scrutins>
