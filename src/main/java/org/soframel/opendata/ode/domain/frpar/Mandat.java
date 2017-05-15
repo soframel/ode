@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Mandat {
 
+	private String acteurId;
 	private TypeMandat type;
 	private String uid;
 	private int legislature;
@@ -79,21 +80,25 @@ public class Mandat {
 		this.organesRef = organesRef;
 	}
 
-	@Override
-	public String toString() {
-		return "Mandat [uid=" + uid + ", legislature=" + legislature
-				+ ", organe=" + typeOrgane + ", dateDebut=" + dateDebut
-				+ ", datePublication=" + datePublication + ", dateFin="
-				+ dateFin + ", qualite=" + qualite + ", organesRef="
-				+ organesRef + "]";
-	}
-
 	public TypeMandat getType() {
 		return type;
 	}
 
 	public void setType(TypeMandat type) {
 		this.type = type;
+	}
+
+	public String getActeurId() {
+		return acteurId;
+	}
+
+	public void setActeurId(String acteurId) {
+		this.acteurId = acteurId;
+	}
+
+	@Override
+	public String toString() {
+		return "Mandat [acteurId=" + acteurId + ", type=" + type + ", uid=" + uid + ", legislature=" + legislature + ", typeOrgane=" + typeOrgane + ", dateDebut=" + dateDebut + ", datePublication=" + datePublication + ", dateFin=" + dateFin + ", qualite=" + qualite + ", organesRef=" + organesRef + "]";
 	}
 
 }

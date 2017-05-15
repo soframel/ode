@@ -9,6 +9,7 @@ import org.soframel.opendata.ode.domain.frpar.Scrutin;
 import org.soframel.opendata.ode.domain.frpar.TypeVote;
 import org.soframel.opendata.ode.domain.frpar.VotesGroupe;
 import org.soframel.opendata.ode.parsers.AbstractContentHandler;
+import org.soframel.opendata.ode.repository.ODERepository;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -18,7 +19,12 @@ public class ScrutinsContentHandler extends AbstractContentHandler {
 
 	private VotesGroupe currentGroupe;
 
-	public ScrutinsContentHandler() {
+	private ODERepository<Scrutin> repo;
+	private ODERepository<VotesGroupe> votesGroupeRepo;
+
+	public ScrutinsContentHandler(ODERepository<Scrutin> repo, ODERepository<VotesGroupe> votesGroupeRepo) {
+		this.repo = repo;
+		this.votesGroupeRepo = votesGroupeRepo;
 		namesStack = new ArrayDeque<>();
 	}
 
@@ -42,10 +48,23 @@ public class ScrutinsContentHandler extends AbstractContentHandler {
 
 		if (localName.equals("scrutin")) {
 			log.info("inserting scrutin " + scrutin.getUid());
-			//TODO: scrutinRepository.insert(scrutin);
+			try {
+				repo.save(scrutin);
+			}
+			catch (Exception e) {
+				throw new SAXException(e);
+			}
 		}
 		else if (localName.equals("groupe")) {
-			scrutin.getVotesGroupes().add(currentGroupe);
+			//scrutin.getVotesGroupes().add(currentGroupe);
+			currentGroupe.setScrutinId(scrutin.getUid());
+			currentGroupe.generateId();
+			try {
+				votesGroupeRepo.save(currentGroupe);
+			}
+			catch (Exception e) {
+				throw new SAXException(e);
+			}
 			currentGroupe = null;
 		}
 		else if ("scrutin".equals(previousElementName)) {

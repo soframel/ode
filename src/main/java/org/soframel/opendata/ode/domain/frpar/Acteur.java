@@ -1,7 +1,6 @@
 package org.soframel.opendata.ode.domain.frpar;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Acteur {
 
@@ -18,7 +17,8 @@ public class Acteur {
 	private String profession;
 	private String catSocPro;
 	private String famSocPro;
-	private List<Mandat> mandats;
+
+	//private List<Mandat> mandats;
 
 	public String getUid() {
 		return uid;
@@ -126,21 +126,15 @@ public class Acteur {
 
 	@Override
 	public String toString() {
-		return "Acteur [uid=" + uid + ", civilite=" + civilite + ", prenom="
-				+ prenom + ", nom=" + nom + ", alpha=" + alpha
-				+ ", dateNaissance=" + dateNaissance + ", villeNaissance="
-				+ villeNaissance + ", depNaissance=" + depNaissance
-				+ ", paysNaissance=" + paysNaissance + ", dateDeces="
-				+ dateDeces + ", profession=" + profession + ", catSocPro="
-				+ catSocPro + ", famSocPro=" + famSocPro + "]";
+		return "Acteur [uid=" + uid + ", civilite=" + civilite + ", prenom=" + prenom + ", nom=" + nom + ", alpha=" + alpha + ", dateNaissance=" + dateNaissance + ", villeNaissance=" + villeNaissance + ", depNaissance=" + depNaissance + ", paysNaissance=" + paysNaissance + ", dateDeces=" + dateDeces + ", profession=" + profession + ", catSocPro=" + catSocPro + ", famSocPro=" + famSocPro + "]";
 	}
 
-	public List<Mandat> getMandats() {
+	/*public List<Mandat> getMandats() {
 		return mandats;
 	}
 
 	public void setMandats(List<Mandat> mandats) {
 		this.mandats = mandats;
-	}
+	}*/
 
 }

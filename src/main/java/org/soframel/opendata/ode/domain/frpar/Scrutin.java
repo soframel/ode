@@ -1,8 +1,6 @@
 package org.soframel.opendata.ode.domain.frpar;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Scrutin {
 
@@ -22,19 +20,12 @@ public class Scrutin {
 	private int votesContre;
 	private int abstention;
 	private int nonVotants;
-	private List<VotesGroupe> votesGroupes = new ArrayList<VotesGroupe>();
+
+	//private List<VotesGroupe> votesGroupes = new ArrayList<VotesGroupe>();
 
 	@Override
 	public String toString() {
-		return "Scrutin [uid=" + uid + ", organeRef=" + organeRef
-				+ ", dateScrutin=" + dateScrutin + ", typeVote=" + typeVote
-				+ ", adopte=" + adopte + ", titre=" + titre + ", demandeur="
-				+ demandeur + ", objet=" + objet + ", modePublicationVotes="
-				+ modePublicationVotes + ", nbVotants=" + nbVotants
-				+ ", suffragesExprimes=" + suffragesExprimes
-				+ ", suffragesRequis=" + suffragesRequis + ", votesPour="
-				+ votesPour + ", votesContre=" + votesContre + ", abstention="
-				+ abstention + ", nonVotants=" + nonVotants + "]";
+		return "Scrutin [uid=" + uid + ", organeRef=" + organeRef + ", dateScrutin=" + dateScrutin + ", typeVote=" + typeVote + ", adopte=" + adopte + ", titre=" + titre + ", demandeur=" + demandeur + ", objet=" + objet + ", modePublicationVotes=" + modePublicationVotes + ", nbVotants=" + nbVotants + ", suffragesExprimes=" + suffragesExprimes + ", suffragesRequis=" + suffragesRequis + ", votesPour=" + votesPour + ", votesContre=" + votesContre + ", abstention=" + abstention + ", nonVotants=" + nonVotants + "]";
 	}
 
 	public String getUid() {
@@ -105,8 +96,7 @@ public class Scrutin {
 		return modePublicationVotes;
 	}
 
-	public void setModePublicationVotes(
-			ModePublicationVotes modePublicationVotes) {
+	public void setModePublicationVotes(ModePublicationVotes modePublicationVotes) {
 		this.modePublicationVotes = modePublicationVotes;
 	}
 
@@ -166,12 +156,12 @@ public class Scrutin {
 		this.nonVotants = nonVotants;
 	}
 
-	public List<VotesGroupe> getVotesGroupes() {
+	/*public List<VotesGroupe> getVotesGroupes() {
 		return votesGroupes;
 	}
 
 	public void setVotesGroupes(List<VotesGroupe> votesGroupes) {
 		this.votesGroupes = votesGroupes;
-	}
+	}*/
 
 }

@@ -9,6 +9,7 @@ import org.soframel.opendata.ode.domain.frpar.Acteur;
 import org.soframel.opendata.ode.domain.frpar.Mandat;
 import org.soframel.opendata.ode.domain.frpar.TypeMandat;
 import org.soframel.opendata.ode.parsers.AbstractContentHandler;
+import org.soframel.opendata.ode.repository.ODERepository;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -18,8 +19,12 @@ public class ActeursContentHandler extends AbstractContentHandler {
 
 	private Mandat mandat;
 
-	public ActeursContentHandler() {
+	private ODERepository<Acteur> acteurRepo;
+	private ODERepository<Mandat> mandatRepo;
 
+	public ActeursContentHandler(ODERepository<Acteur> repo, ODERepository<Mandat> mandatRepo) {
+		this.acteurRepo = repo;
+		this.mandatRepo = mandatRepo;
 		namesStack = new ArrayDeque<>();
 	}
 
@@ -30,8 +35,8 @@ public class ActeursContentHandler extends AbstractContentHandler {
 		if (localName.equals("acteur")) {
 			log.info("parsing acteur");
 			acteur = new Acteur();
-			List<Mandat> mandats = new ArrayList<Mandat>();
-			acteur.setMandats(mandats);
+			//List<Mandat> mandats = new ArrayList<Mandat>();
+			//acteur.setMandats(mandats);
 		}
 		else if (localName.equals("mandat")) {
 			log.info("parsing mandat");
@@ -51,10 +56,24 @@ public class ActeursContentHandler extends AbstractContentHandler {
 
 		if (localName.equals("acteur")) {
 			log.info("inserting Acteur " + acteur.getUid());
-			//TODO: acteurRepository.insert(acteur);
+			try {
+				acteurRepo.save(acteur);
+			}
+			catch (Exception e) {
+				throw new SAXException(e);
+			}
 		}
 		else if (localName.equals("mandat")) {
-			acteur.getMandats().add(mandat);
+			//acteur.getMandats().add(mandat);
+			mandat.setActeurId(acteur.getUid());
+			log.info("inserting Mandat " + mandat.getUid());
+			try {
+				mandatRepo.save(mandat);
+			}
+			catch (Exception e) {
+				throw new SAXException(e);
+			}
+
 			mandat = null;
 		}
 		else if ("acteur".equals(previousElementName)) {

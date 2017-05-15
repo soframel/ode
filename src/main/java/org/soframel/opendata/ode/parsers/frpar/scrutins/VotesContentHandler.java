@@ -6,6 +6,8 @@ import org.soframel.opendata.ode.domain.frpar.CausePositionVote;
 import org.soframel.opendata.ode.domain.frpar.PositionVote;
 import org.soframel.opendata.ode.domain.frpar.Vote;
 import org.soframel.opendata.ode.parsers.AbstractContentHandler;
+import org.soframel.opendata.ode.repository.ODERepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -16,7 +18,11 @@ public class VotesContentHandler extends AbstractContentHandler {
 	private String scrutinId;
 	private PositionVote currentPosition;
 
-	public VotesContentHandler() {
+	@Autowired
+	private ODERepository<Vote> repository;
+
+	public VotesContentHandler(ODERepository<Vote> repository) {
+		this.repository = repository;
 		namesStack = new ArrayDeque<>();
 	}
 
@@ -51,7 +57,12 @@ public class VotesContentHandler extends AbstractContentHandler {
 		if (localName.equals("votant")) {
 			vote.generateVoteId();
 			log.info("inserting vote " + vote.getVoteId());
-			//TODO: repository.insert(vote);
+			try {
+				repository.save(vote);
+			}
+			catch (Exception e) {
+				throw new SAXException(e);
+			}
 		}
 		else if ("scrutin".equals(previousElementName)) {
 			if (localName.equals("uid")) {

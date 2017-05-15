@@ -8,6 +8,7 @@ public class Vote {
 	private PositionVote vote;
 	private CausePositionVote causePositionVote;
 	private String scrutinId;
+	private String voteGroupeId;
 
 	public void generateVoteId() {
 		voteId = scrutinId + "-" + acteurRef;
@@ -45,13 +46,6 @@ public class Vote {
 		this.causePositionVote = causePositionVote;
 	}
 
-	@Override
-	public String toString() {
-		return "Vote [acteurRef=" + acteurRef + ", mandatRef=" + mandatRef
-				+ ", vote=" + vote + ", causePositionVote=" + causePositionVote
-				+ "]";
-	}
-
 	public String getVoteId() {
 		return voteId;
 	}
@@ -62,6 +56,19 @@ public class Vote {
 
 	public void setScrutinId(String scrutinId) {
 		this.scrutinId = scrutinId;
+	}
+
+	public String getVoteGroupeId() {
+		return voteGroupeId;
+	}
+
+	public void setVoteGroupeId(String voteGroupeId) {
+		this.voteGroupeId = voteGroupeId;
+	}
+
+	@Override
+	public String toString() {
+		return "Vote [voteId=" + voteId + ", acteurRef=" + acteurRef + ", mandatRef=" + mandatRef + ", vote=" + vote + ", causePositionVote=" + causePositionVote + ", scrutinId=" + scrutinId + ", voteGroupeId=" + voteGroupeId + "]";
 	}
 
 }
