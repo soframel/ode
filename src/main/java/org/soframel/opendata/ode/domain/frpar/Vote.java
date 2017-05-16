@@ -11,7 +11,7 @@ public class Vote {
 	private String voteGroupeId;
 
 	public void generateVoteId() {
-		voteId = scrutinId + "-" + acteurRef;
+		voteId = scrutinId + "-" + acteurRef + "-" + mandatRef;
 	}
 
 	public String getActeurRef() {

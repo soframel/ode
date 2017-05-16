@@ -7,14 +7,12 @@ import static org.junit.Assert.assertNull;
 import java.io.InputStream;
 import java.time.LocalDate;
 
-import javax.annotation.Resource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.soframel.opendata.ode.ODEConfig;
 import org.soframel.opendata.ode.domain.frpar.Organe;
 import org.soframel.opendata.ode.repository.ODERepository;
-import org.soframel.opendata.ode.repository.mock.MockOrganeRepository;
+import org.soframel.opendata.ode.repository.mock.MockODERepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,8 +25,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class OrganesParserTestCase {
 
 	@Bean(name = "organeRepository")
-	public MockOrganeRepository createOrganeRepository() {
-		MockOrganeRepository mock = new MockOrganeRepository();
+	public ODERepository<Organe> createOrganeRepository() {
+		ODERepository<Organe> mock = new MockODERepository<Organe>() {
+			@Override
+			public String getId(Organe t) {
+				return t.getUid();
+			}
+		};
 		return mock;
 	}
 
@@ -36,7 +39,6 @@ public class OrganesParserTestCase {
 	private OrganesParser parser;
 
 	@Autowired
-	@Resource(name = "organeRepository")
 	private ODERepository<Organe> organeRepository;
 
 	@Test

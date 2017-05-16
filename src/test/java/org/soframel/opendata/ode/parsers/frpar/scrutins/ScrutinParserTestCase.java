@@ -3,58 +3,69 @@ package org.soframel.opendata.ode.parsers.frpar.scrutins;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.soframel.opendata.ode.ODEConfig;
 import org.soframel.opendata.ode.domain.frpar.ModePublicationVotes;
 import org.soframel.opendata.ode.domain.frpar.PositionVote;
 import org.soframel.opendata.ode.domain.frpar.Scrutin;
 import org.soframel.opendata.ode.domain.frpar.TypeVote;
 import org.soframel.opendata.ode.domain.frpar.VotesGroupe;
-import org.soframel.opendata.ode.parsers.frpar.scrutins.ScrutinsParser;
+import org.soframel.opendata.ode.repository.ODERepository;
+import org.soframel.opendata.ode.repository.mock.MockODERepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { ODEConfig.class, ScrutinParserTestCase.class })
+@Configuration
 public class ScrutinParserTestCase {
 
-	private ScrutinsParser parser;
-
-	private List<Scrutin> savedScrutins;
-
-	@Before
-	public void init() {
-		savedScrutins = new ArrayList<Scrutin>();
-
-		/*repo = Mockito.mock(ScrutinRepository.class);
-		when(repo.insert(Mockito.any(Scrutin.class))).thenAnswer(
-				new Answer<Scrutin>() {
-					@Override
-					public Scrutin answer(InvocationOnMock invocation)
-							throws Throwable {
-						Scrutin scrutin = invocation.getArgumentAt(0,
-								Scrutin.class);
-						savedScrutins.add(scrutin);
-						return scrutin;
-					}
-				});*/
-
-		parser = new ScrutinsParser();
-		//parser.setScrutinRepository(repo);
+	@Bean(name = "scrutinRepository")
+	public ODERepository<Scrutin> createScrutinRepository() {
+		ODERepository<Scrutin> mock = new MockODERepository<Scrutin>() {
+			@Override
+			public String getId(Scrutin t) {
+				return t.getUid();
+			}
+		};
+		return mock;
 	}
 
+	@Bean(name = "votesGroupeRepository")
+	public ODERepository<VotesGroupe> createVotesGroupeRepository() {
+		ODERepository<VotesGroupe> mock = new MockODERepository<VotesGroupe>() {
+			@Override
+			public String getId(VotesGroupe t) {
+				return t.getId();
+			}
+		};
+		return mock;
+	}
+
+	@Autowired
+	private ScrutinsParser parser;
+
+	@Autowired
+	private ODERepository<Scrutin> srutinRepository;
+	@Autowired
+	private ODERepository<VotesGroupe> votsGroupeRepository;
+
 	@Test
-	public void testParseSmallScrutinsFile() throws IOException {
+	public void testParseSmallScrutinsFile() throws Exception {
 
 		try (InputStream in = this.getClass().getClassLoader().getResourceAsStream("scrutins-small.xml");) {
 			assertNotNull("in is null", in);
 			parser.parseAndInsert(in);
 		}
 
-		assertEquals(1, savedScrutins.size());
-		Scrutin scrutin = savedScrutins.get(0);
+		Scrutin scrutin = srutinRepository.get("VTANR5L14V1");
 		assertEquals("VTANR5L14V1", scrutin.getUid());
 		assertEquals("PO644420", scrutin.getOrganeRef());
 		assertEquals(LocalDate.of(2012, 7, 3), scrutin.getDateScrutin());
@@ -72,8 +83,8 @@ public class ScrutinParserTestCase {
 		assertEquals(17, scrutin.getAbstention());
 		assertEquals(26, scrutin.getNonVotants());
 
-		assertEquals(1, scrutin.getVotesGroupes().size());
-		VotesGroupe groupe = scrutin.getVotesGroupes().get(0);
+		VotesGroupe groupe = votsGroupeRepository.get("VTANR5L14V1-PO656002");
+		assertNotNull(groupe);
 		assertEquals("PO656002", groupe.getOrganeRef());
 		assertEquals(294, groupe.getNbMembresGroupe());
 		assertEquals(PositionVote.POUR, groupe.getPositionMajoritaire());

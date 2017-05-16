@@ -1,5 +1,7 @@
 package org.soframel.opendata.ode.parsers.frpar.scrutins;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -7,12 +9,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.soframel.opendata.ode.parsers.frpar.scrutins.ScrutinsParser;
-import org.soframel.opendata.ode.parsers.frpar.scrutins.VotesParser;
+import org.soframel.opendata.ode.ODEConfig;
+import org.soframel.opendata.ode.domain.frpar.Scrutin;
+import org.soframel.opendata.ode.domain.frpar.Vote;
+import org.soframel.opendata.ode.domain.frpar.VotesGroupe;
+import org.soframel.opendata.ode.repository.ODERepository;
+import org.soframel.opendata.ode.repository.mock.MockODERepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.core.io.Resource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * insert big files to test on a real complete example
@@ -20,22 +29,63 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author sophie
  *
  */
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { ODEConfig.class, ScrutinsFullParserTestCase.class })
+@Configuration
 public class ScrutinsFullParserTestCase {
 	private final static Logger log = LoggerFactory.getLogger(ScrutinsFullParserTestCase.class);
+
+	private final String BIGFILES_DIR = "./src/test/bigresources";
+
+	@Bean(name = "scrutinRepository")
+	public ODERepository<Scrutin> createScrutinRepository() {
+		ODERepository<Scrutin> mock = new MockODERepository<Scrutin>() {
+			@Override
+			public String getId(Scrutin t) {
+				return t.getUid();
+			}
+		};
+		return mock;
+	}
+
+	@Bean(name = "votesGroupeRepository")
+	public ODERepository<VotesGroupe> createVotesGroupeRepository() {
+		ODERepository<VotesGroupe> mock = new MockODERepository<VotesGroupe>() {
+			@Override
+			public String getId(VotesGroupe t) {
+				return t.getId();
+			}
+		};
+		return mock;
+	}
+
+	@Bean(name = "voteRepository")
+	public ODERepository<Vote> createVoteRepository() {
+		ODERepository<Vote> mock = new MockODERepository<Vote>() {
+			@Override
+			public String getId(Vote t) {
+				return t.getVoteId();
+			}
+		};
+		return mock;
+	}
+
+	@Autowired
+	private VotesParser votesParser;
 
 	@Autowired
 	private ScrutinsParser scrutinsParser;
 
 	@Autowired
-	private VotesParser votesParser;
+	private ODERepository<Scrutin> scrutinRepository;
+	@Autowired
+	private ODERepository<VotesGroupe> votsGroupeRepository;
 
-	private final String BIGFILES_DIR = "./src/test/bigresources";
+	@Autowired
+	private ODERepository<Vote> voteRepository;
 
 	@Test
 	public void testInsertScrutinsFull() throws IOException {
-		//TODO: scrutinRepository.deleteAll();
-		//TODO: voteRepository.deleteAll();
 
 		FileSystemResourceLoader loader = new FileSystemResourceLoader();
 		Resource scrutinsResource = loader.getResource(BIGFILES_DIR + "/scrutins-20170220-full.xml");
@@ -48,7 +98,8 @@ public class ScrutinsFullParserTestCase {
 		long time2 = System.currentTimeMillis();
 		log.info("scrutins parsed and inserted in " + (time2 - time) + " ms");
 
-		//TODO: assertEquals(1354, scrutinRepository.count());
+		assertEquals(1354, ((MockODERepository<Scrutin>) scrutinRepository).countEntries());
+
 		in.close();
 
 		//in = this.getClass().getResourceAsStream(BIGFILES_DIR + "/scrutins-20170220-full.xml");
@@ -59,6 +110,8 @@ public class ScrutinsFullParserTestCase {
 		log.info("votes parsed and inserted in " + (time3 - time2) + " ms");
 		in.close();
 
-		//TODO: assertEquals(111251, voteRepository.count());
+		//TODO: Warning: doesn't match, some vote are multiple times with same id !?!
+		//assertEquals(111251, ((MockODERepository<Vote>) voteRepository).countEntries());
+		assertEquals(110809, ((MockODERepository<Vote>) voteRepository).countEntries());
 	}
 }

@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.log4j.Logger;
+import org.soframel.opendata.ode.repository.ODEHttpConnection;
 import org.soframel.opendata.ode.repository.ODERepository;
 import org.soframel.opendata.ode.repository.frpar.elastic.ActeurRepositoryElastic;
 import org.soframel.opendata.ode.utils.JacksonHelper;
@@ -19,7 +20,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 	private static Logger LOGGER = Logger.getLogger(ActeurRepositoryElastic.class);
 
 	@Autowired
-	private ElasticConnection elastic;
+	private ODEHttpConnection connection;
 
 	@Autowired
 	private JacksonHelper jacksonHelper;
@@ -35,9 +36,9 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		LOGGER.debug("Sending acteur: " + serialized);
 
 		//HTTP request
-		CloseableHttpClient httpclient = elastic.getHttpClient();
+		CloseableHttpClient httpclient = connection.getHttpClient();
 		try {
-			HttpPost post = elastic.getHttpPost(frparIndex + "/" + getElasticType() + "/" + getId(o), serialized);
+			HttpPost post = connection.getHttpPost(frparIndex + "/" + getElasticType() + "/" + getId(o), serialized);
 			String responseBody = httpclient.execute(post, new StringResponseHandler());
 			LOGGER.debug(">>>>> response: " + responseBody);
 		}
@@ -50,9 +51,9 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 	public T get(String id) throws Exception {
 		//HTTP request
 		String responseBody = null;
-		CloseableHttpClient httpclient = elastic.getHttpClient();
+		CloseableHttpClient httpclient = connection.getHttpClient();
 		try {
-			HttpGet get = elastic.getHttpGet(frparIndex + "/" + getElasticType() + "/" + id);
+			HttpGet get = connection.getHttpGet(frparIndex + "/" + getElasticType() + "/" + id);
 			responseBody = httpclient.execute(get, new StringResponseHandler());
 			LOGGER.debug(">>>>> response: " + responseBody);
 		}
