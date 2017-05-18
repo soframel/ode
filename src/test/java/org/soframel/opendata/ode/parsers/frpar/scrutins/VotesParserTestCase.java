@@ -50,21 +50,21 @@ public class VotesParserTestCase {
 			parser.parseAndInsert(in);
 		}
 
-		Vote vote = voteRepository.get("VTANR5L14V1-PA328");
+		Vote vote = voteRepository.get("VTANR5L14V1-PA328-PM645184");
 		assertNotNull(vote);
 		assertEquals("VTANR5L14V1", vote.getScrutinId());
 		assertEquals("PM645184", vote.getMandatRef());
 		assertEquals(CausePositionVote.MG, vote.getCausePositionVote());
 		assertEquals(PositionVote.NONVOTANT, vote.getVote());
 
-		vote = voteRepository.get("VTANR5L14V1-PA356");
+		vote = voteRepository.get("VTANR5L14V1-PA356-PM645358");
 		assertNotNull(vote);
 		assertEquals("VTANR5L14V1", vote.getScrutinId());
 		assertEquals("PM645358", vote.getMandatRef());
 		assertNull(vote.getCausePositionVote());
 		assertEquals(PositionVote.POUR, vote.getVote());
 
-		vote = voteRepository.get("VTANR5L14V1-PA394");
+		vote = voteRepository.get("VTANR5L14V1-PA394-PM645447");
 		assertNotNull(vote);
 		assertEquals("VTANR5L14V1", vote.getScrutinId());
 		assertEquals("PM645447", vote.getMandatRef());

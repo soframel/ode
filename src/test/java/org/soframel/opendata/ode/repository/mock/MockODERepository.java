@@ -27,9 +27,19 @@ public abstract class MockODERepository<T> implements ODERepository<T> {
 		return map.get(id);
 	}
 
+	@Override
+	public void deleteAll() throws Exception {
+		map.clear();
+	}
+
 	public abstract String getId(T t);
 
 	public int countEntries() {
 		return map.size();
+	}
+
+	@Override
+	public void createIndexMapping() throws Exception {
+		//do nothing
 	}
 }

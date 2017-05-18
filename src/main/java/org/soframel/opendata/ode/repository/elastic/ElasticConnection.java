@@ -2,8 +2,10 @@ package org.soframel.opendata.ode.repository.elastic;
 
 import java.nio.charset.Charset;
 
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -32,12 +34,26 @@ public class ElasticConnection implements ODEHttpConnection {
 		return post;
 	}
 
+	@Override
+	public HttpDelete getHttpDelete(String query) {
+		HttpDelete delete = new HttpDelete(url + "/" + query);
+		return delete;
+	}
+
 	public String getUrl() {
 		return url;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	@Override
+	public HttpPut getHttpPut(String query, String body) {
+		HttpPut put = new HttpPut(url + "/" + query);
+		put.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+		put.setEntity(new StringEntity(body, Charset.forName("UTF-8")));
+		return put;
 	}
 
 }

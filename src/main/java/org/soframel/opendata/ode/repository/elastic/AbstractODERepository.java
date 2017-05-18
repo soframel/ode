@@ -1,10 +1,14 @@
 package org.soframel.opendata.ode.repository.elastic;
 
+import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.log4j.Logger;
 import org.soframel.opendata.ode.repository.ODEHttpConnection;
@@ -65,6 +69,40 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		ObjectMapper mapper = jacksonHelper.getObjectMapper();
 		T t = mapper.readValue(responseBody, getTypeClass());
 		return t;
+	}
+
+	@Override
+	public void deleteAll() throws Exception {
+		//HTTP request
+		String responseBody = null;
+		CloseableHttpClient httpclient = connection.getHttpClient();
+		try {
+			HttpDelete del = connection.getHttpDelete(frparIndex);
+			responseBody = httpclient.execute(del, new StringResponseHandler());
+			LOGGER.debug(">>>>> response: " + responseBody);
+		}
+		finally {
+			httpclient.close();
+		}
+	}
+
+	@Override
+	public void createIndexMapping() throws Exception {
+
+		//load mapping file
+		File mappingFile = new File("frpar-index.json");
+		String mapping = FileUtils.readFileToString(mappingFile);
+
+		//HTTP request
+		CloseableHttpClient httpclient = connection.getHttpClient();
+		try {
+			HttpPut put = connection.getHttpPut(frparIndex, mapping);
+			String responseBody = httpclient.execute(put, new StringResponseHandler());
+			LOGGER.debug(">>>>> response: " + responseBody);
+		}
+		finally {
+			httpclient.close();
+		}
 	}
 
 	public abstract String getElasticType();

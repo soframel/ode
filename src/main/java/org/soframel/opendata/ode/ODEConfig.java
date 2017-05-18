@@ -19,6 +19,7 @@ import org.soframel.opendata.ode.repository.frpar.elastic.OrganeRepositoryElasti
 import org.soframel.opendata.ode.repository.frpar.elastic.ScrutinRepositoryElastic;
 import org.soframel.opendata.ode.repository.frpar.elastic.VoteRepositoryElastic;
 import org.soframel.opendata.ode.repository.frpar.elastic.VotesGroupeRepositoryElastic;
+import org.soframel.opendata.ode.scripts.frpar.FrparProcessor;
 import org.soframel.opendata.ode.utils.JacksonHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -102,6 +103,12 @@ public class ODEConfig {
 	@Bean(name = "jacksonHelper")
 	public JacksonHelper createJacksonHelper() {
 		JacksonHelper h = new JacksonHelper();
+		return h;
+	}
+
+	@Bean(name = "frparProcessor")
+	public FrparProcessor createFrparProcessor() {
+		FrparProcessor h = new FrparProcessor();
 		return h;
 	}
 

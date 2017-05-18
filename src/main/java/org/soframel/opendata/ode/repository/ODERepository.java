@@ -5,4 +5,8 @@ public interface ODERepository<T> {
 	public void save(T o) throws Exception;
 
 	public T get(String id) throws Exception;
+
+	public void deleteAll() throws Exception;
+
+	public void createIndexMapping() throws Exception;
 }
