@@ -20,4 +20,9 @@ public class MandatRepositoryElastic extends AbstractODERepository<Mandat> {
 		return Mandat.class;
 	}
 
+	@Override
+	public String getIndexName() {
+		return "frpar-mandat";
+	}
+
 }

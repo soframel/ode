@@ -1,9 +1,10 @@
 package org.soframel.opendata.ode.repository.elastic;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -29,7 +30,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 	@Autowired
 	private JacksonHelper jacksonHelper;
 
-	private final static String frparIndex = "frpar";
+	abstract public String getIndexName();
 
 	@Override
 	public void save(T o) throws ClientProtocolException, IOException {
@@ -42,7 +43,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		//HTTP request
 		CloseableHttpClient httpclient = connection.getHttpClient();
 		try {
-			HttpPost post = connection.getHttpPost(frparIndex + "/" + getElasticType() + "/" + getId(o), serialized);
+			HttpPost post = connection.getHttpPost(getIndexName() + "/" + getElasticType() + "/" + getId(o), serialized);
 			String responseBody = httpclient.execute(post, new StringResponseHandler());
 			LOGGER.debug(">>>>> response: " + responseBody);
 		}
@@ -57,7 +58,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		String responseBody = null;
 		CloseableHttpClient httpclient = connection.getHttpClient();
 		try {
-			HttpGet get = connection.getHttpGet(frparIndex + "/" + getElasticType() + "/" + id);
+			HttpGet get = connection.getHttpGet(getIndexName() + "/" + getElasticType() + "/" + id);
 			responseBody = httpclient.execute(get, new StringResponseHandler());
 			LOGGER.debug(">>>>> response: " + responseBody);
 		}
@@ -77,7 +78,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		String responseBody = null;
 		CloseableHttpClient httpclient = connection.getHttpClient();
 		try {
-			HttpDelete del = connection.getHttpDelete(frparIndex);
+			HttpDelete del = connection.getHttpDelete(getIndexName());
 			responseBody = httpclient.execute(del, new StringResponseHandler());
 			LOGGER.debug(">>>>> response: " + responseBody);
 		}
@@ -90,13 +91,15 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 	public void createIndexMapping() throws Exception {
 
 		//load mapping file
-		File mappingFile = new File("frpar-index.json");
-		String mapping = FileUtils.readFileToString(mappingFile);
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream(this.getIndexName() + "-index.json");
+		StringWriter sw = new StringWriter();
+		IOUtils.copy(in, sw);
+		String mapping = sw.toString();
 
 		//HTTP request
 		CloseableHttpClient httpclient = connection.getHttpClient();
 		try {
-			HttpPut put = connection.getHttpPut(frparIndex, mapping);
+			HttpPut put = connection.getHttpPut(getIndexName(), mapping);
 			String responseBody = httpclient.execute(put, new StringResponseHandler());
 			LOGGER.debug(">>>>> response: " + responseBody);
 		}

@@ -1,0 +1,29 @@
+{
+  "mappings": {
+    "votesgroupe": {
+    	"properties": {
+    		"organeRef": {
+    			"type": "keyword"
+    		},
+    		"nbMembresGroupe": {
+    			"type": "integer"
+    		},
+    		"positionMajoritaire": {
+    			"type": "keyword"
+    		},
+    		"votesPour": {
+    			"type": "integer"
+    		},
+    		"votesContre": {
+    			"type": "integer"
+    		},
+    		"nbAbstentions": {
+    			"type": "integer"
+    		},
+    		"nbNonVotants": {
+    			"type": "integer"
+    		}
+    	}
+    }
+  }
+}

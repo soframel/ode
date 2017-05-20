@@ -1,0 +1,23 @@
+{
+  "mappings": {
+     "vote": {
+    	"properties": {
+    		"acteurRef": {
+    			"type": "keyword"
+    		},
+    		"mandatRef": {
+    			"type": "keyword"
+    		},
+    		"positionVote": {
+    			"type": "keyword"
+    		},	
+    		"causePositionVote": {
+    			"type": "keyword"
+    		},	
+			"scrutinId": {
+    			"type": "keyword"
+    		}
+    	}
+    }
+  }
+}

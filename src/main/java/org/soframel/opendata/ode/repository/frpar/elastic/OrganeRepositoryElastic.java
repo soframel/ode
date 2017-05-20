@@ -20,4 +20,9 @@ public class OrganeRepositoryElastic extends AbstractODERepository<Organe> {
 		return Organe.class;
 	}
 
+	@Override
+	public String getIndexName() {
+		return "frpar-organe";
+	}
+
 }

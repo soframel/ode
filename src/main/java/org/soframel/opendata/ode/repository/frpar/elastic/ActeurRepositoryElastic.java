@@ -20,4 +20,9 @@ public class ActeurRepositoryElastic extends AbstractODERepository<Acteur> {
 		return Acteur.class;
 	}
 
+	@Override
+	public String getIndexName() {
+		return "frpar-acteur";
+	}
+
 }

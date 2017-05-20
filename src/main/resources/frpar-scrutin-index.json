@@ -1,0 +1,42 @@
+{
+  "mappings": {
+   
+    "scrutin": {
+    	"properties": {
+    		"dateScrutin": { 
+	          "type": "date"
+	        },
+    		"typeVote": {
+    			"type": "keyword"
+    		},
+    		"adopte": {
+    			"type": "boolean"
+    		},
+			"modePublicationVotes": {
+				"type": "keyword"
+			},
+			"nbVotants": {
+    			"type": "integer"
+    		},
+    		"suffragesExprimes": {
+    			"type": "integer"
+    		},
+    		"suffragesRequis": {
+    			"type": "integer"
+    		},
+    		"votesPour": {
+    			"type": "integer"
+    		},
+    		"votesContre": {
+    			"type": "integer"
+    		},
+    		"abstention": {
+    			"type": "integer"
+    		},
+    		"nonVotants": {
+    			"type": "integer"
+    		}
+    	}
+    }
+  }
+}

@@ -20,4 +20,9 @@ public class ScrutinRepositoryElastic extends AbstractODERepository<Scrutin> {
 		return Scrutin.class;
 	}
 
+	@Override
+	public String getIndexName() {
+		return "frpar-scrutin";
+	}
+
 }

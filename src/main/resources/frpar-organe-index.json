@@ -1,0 +1,26 @@
+{
+  "mappings": {
+    "organe": {
+      "properties": {
+      	"codeType": {
+      		"type": "keyword"
+      	},
+        "dateDebut": { 
+          "type": "date"
+        },
+        "dateAgrement": { 
+          "type": "date"
+        },
+        "dateFin": { 
+          "type": "date"
+        },
+        "legislature": { 
+          "type": "keyword"
+        },
+        "typeOrgame": { 
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

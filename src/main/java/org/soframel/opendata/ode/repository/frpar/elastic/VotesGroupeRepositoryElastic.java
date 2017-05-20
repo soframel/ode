@@ -20,4 +20,9 @@ public class VotesGroupeRepositoryElastic extends AbstractODERepository<VotesGro
 		return VotesGroupe.class;
 	}
 
+	@Override
+	public String getIndexName() {
+		return "frpar-votesgroupe";
+	}
+
 }

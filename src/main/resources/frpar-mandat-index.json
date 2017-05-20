@@ -1,0 +1,27 @@
+{
+  "mappings": {
+   
+     "mandat": {
+    	"properties": {
+    		"typeMandat": {
+    			"type": "keyword"
+    		},
+    		"legislature": {
+    			"type": "keyword"
+    		},
+			"typeOrgane": {
+    			"type": "keyword"
+    		},
+    		"dateDebut": { 
+	          "type": "date"
+	        },
+	        "datePublication": { 
+	          "type": "date"
+	        },
+	        "dateFin": { 
+	          "type": "date"
+	        }		
+    	}
+    }
+  }
+}

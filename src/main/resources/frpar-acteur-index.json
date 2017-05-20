@@ -1,0 +1,15 @@
+{
+  "mappings": {
+    
+    "acteur": {
+    	"properties": {
+    		"dateNaissance": {
+    			"type": "date"
+    		},
+    		"dateDeces": {
+    			"type": "date"
+    		}			
+    	}
+    }
+  }
+}

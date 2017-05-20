@@ -1,12 +1,16 @@
 package org.soframel.opendata.ode.scripts.frpar;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.soframel.opendata.ode.ODEConfig;
 import org.soframel.opendata.ode.domain.frpar.Acteur;
+import org.soframel.opendata.ode.domain.frpar.Mandat;
+import org.soframel.opendata.ode.domain.frpar.Organe;
+import org.soframel.opendata.ode.domain.frpar.Scrutin;
+import org.soframel.opendata.ode.domain.frpar.Vote;
+import org.soframel.opendata.ode.domain.frpar.VotesGroupe;
 import org.soframel.opendata.ode.parsers.frpar.acteurs.ActeursParser;
 import org.soframel.opendata.ode.parsers.frpar.acteurs.OrganesParser;
 import org.soframel.opendata.ode.parsers.frpar.scrutins.ScrutinsParser;
@@ -32,8 +36,6 @@ public class FrparProcessor {
 
 		FrparProcessor proc = context.getBean(FrparProcessor.class);
 		try {
-			proc.deleteIndex();
-			proc.createMapping();
 			proc.insertActeursFull();
 			proc.insertOrganesFull();
 			proc.insertScrutinsFull();
@@ -47,6 +49,16 @@ public class FrparProcessor {
 
 	@Autowired
 	private ODERepository<Acteur> acteurRepository;
+	@Autowired
+	private ODERepository<Organe> organeRepository;
+	@Autowired
+	private ODERepository<Mandat> mandatRepository;
+	@Autowired
+	private ODERepository<Scrutin> scrutinRepository;
+	@Autowired
+	private ODERepository<VotesGroupe> votesGroupeRepository;
+	@Autowired
+	private ODERepository<Vote> voteRepository;
 
 	@Autowired
 	private ActeursParser acteursParser;
@@ -60,15 +72,15 @@ public class FrparProcessor {
 
 	private final String BIGFILES_DIR = "./src/test/bigresources";
 
-	public void deleteIndex() throws Exception {
-		acteurRepository.deleteAll();
-	}
-
-	public void createMapping() throws Exception {
-		acteurRepository.createIndexMapping();
-	}
-
 	public void insertActeursFull() throws Exception {
+		try {
+			acteurRepository.deleteAll();
+		}
+		catch (Exception e) {
+			//not an issue, index was perhaps already deleted
+			log.warn("Exception while deleting index: " + e.getMessage());
+		}
+		acteurRepository.createIndexMapping();
 
 		FileSystemResourceLoader loader = new FileSystemResourceLoader();
 		Resource resource = loader.getResource(BIGFILES_DIR + "/acteurs-201702-full.xml");
@@ -84,7 +96,15 @@ public class FrparProcessor {
 		in.close();
 	}
 
-	public void insertOrganesFull() throws IOException {
+	public void insertOrganesFull() throws Exception {
+		try {
+			organeRepository.deleteAll();
+		}
+		catch (Exception e) {
+			//not an issue, index was perhaps already deleted
+			log.warn("Exception while deleting index: " + e.getMessage());
+		}
+		organeRepository.createIndexMapping();
 
 		FileSystemResourceLoader loader = new FileSystemResourceLoader();
 		Resource resource = loader.getResource(BIGFILES_DIR + "/acteurs-201702-full.xml");
@@ -98,7 +118,19 @@ public class FrparProcessor {
 		in.close();
 	}
 
-	public void insertScrutinsFull() throws IOException {
+	public void insertScrutinsFull() throws Exception {
+		try {
+			scrutinRepository.deleteAll();
+			voteRepository.deleteAll();
+			votesGroupeRepository.deleteAll();
+		}
+		catch (Exception e) {
+			//not an issue, index was perhaps already deleted
+			log.warn("Exception while deleting index: " + e.getMessage());
+		}
+		scrutinRepository.createIndexMapping();
+		voteRepository.createIndexMapping();
+		votesGroupeRepository.createIndexMapping();
 
 		FileSystemResourceLoader loader = new FileSystemResourceLoader();
 		Resource scrutinsResource = loader.getResource(BIGFILES_DIR + "/scrutins-20170220-full.xml");
