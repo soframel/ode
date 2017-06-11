@@ -42,6 +42,7 @@ public class ActeursParser extends OpenDataAbstractParser {
 		catch (IOException e) {
 			log.error("IOException " + e.getMessage(), e);
 		}
+		log.info("finished parsing acteurs");
 	}
 
 }

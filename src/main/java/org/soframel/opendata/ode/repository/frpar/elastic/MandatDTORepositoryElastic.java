@@ -1,9 +1,9 @@
 package org.soframel.opendata.ode.repository.frpar.elastic;
 
-import org.soframel.opendata.ode.domain.frpar.Mandat;
+import org.soframel.opendata.ode.dto.frpar.MandatDTO;
 import org.soframel.opendata.ode.repository.elastic.AbstractODERepository;
 
-public class MandatRepositoryElastic extends AbstractODERepository<Mandat> {
+public class MandatDTORepositoryElastic extends AbstractODERepository<MandatDTO> {
 
 	@Override
 	public String getElasticType() {
@@ -11,13 +11,13 @@ public class MandatRepositoryElastic extends AbstractODERepository<Mandat> {
 	}
 
 	@Override
-	public String getId(Mandat t) {
+	public String getId(MandatDTO t) {
 		return t.getUid();
 	}
 
 	@Override
-	public Class<Mandat> getTypeClass() {
-		return Mandat.class;
+	public Class<MandatDTO> getTypeClass() {
+		return MandatDTO.class;
 	}
 
 	@Override

@@ -39,6 +39,7 @@ public class VotesParser extends OpenDataAbstractParser {
 		catch (IOException e) {
 			log.error("IOException " + e.getMessage(), e);
 		}
+		log.info("finished parsing votes");
 	}
 
 }

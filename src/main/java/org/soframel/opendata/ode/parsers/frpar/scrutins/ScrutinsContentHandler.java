@@ -33,7 +33,7 @@ public class ScrutinsContentHandler extends AbstractContentHandler {
 		currentCharacters = new StringBuffer();
 		namesStack.push(localName);
 		if (localName.equals("scrutin")) {
-			log.info("parsing scrutin");
+			log.debug("parsing scrutin");
 			scrutin = new Scrutin();
 		}
 		else if (localName.equals("groupe")) {
@@ -47,7 +47,7 @@ public class ScrutinsContentHandler extends AbstractContentHandler {
 		String previousElementName = namesStack.peek();
 
 		if (localName.equals("scrutin")) {
-			log.info("inserting scrutin " + scrutin.getUid());
+			log.debug("inserting scrutin " + scrutin.getUid());
 			try {
 				repo.save(scrutin);
 			}

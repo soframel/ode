@@ -42,4 +42,23 @@ public abstract class MockODERepository<T> implements ODERepository<T> {
 	public void createIndexMapping() throws Exception {
 		//do nothing
 	}
+
+	@Override
+	public T getCached(String id) {
+		T o = null;
+		try {
+			o = this.get(id);
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return o;
+	}
+
+	@Override
+	public void cache(T o) {
+		//do nothing, no cache
+	}
+
 }

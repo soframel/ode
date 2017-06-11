@@ -22,10 +22,13 @@ public class ActeursContentHandler extends AbstractContentHandler {
 	private ODERepository<Acteur> acteurRepo;
 	private ODERepository<Mandat> mandatRepo;
 
+	private List<Mandat> mandats = new ArrayList<Mandat>();
+
 	public ActeursContentHandler(ODERepository<Acteur> repo, ODERepository<Mandat> mandatRepo) {
 		this.acteurRepo = repo;
 		this.mandatRepo = mandatRepo;
 		namesStack = new ArrayDeque<>();
+		mandats = new ArrayList<Mandat>();
 	}
 
 	@Override
@@ -33,13 +36,11 @@ public class ActeursContentHandler extends AbstractContentHandler {
 		currentCharacters = new StringBuffer();
 		namesStack.push(localName);
 		if (localName.equals("acteur")) {
-			log.info("parsing acteur");
+			log.debug("parsing acteur");
 			acteur = new Acteur();
-			//List<Mandat> mandats = new ArrayList<Mandat>();
-			//acteur.setMandats(mandats);
 		}
 		else if (localName.equals("mandat")) {
-			log.info("parsing mandat");
+			log.debug("parsing mandat");
 			mandat = new Mandat();
 			if (attributes.getLength() > 0) {
 				mandat.setType(TypeMandat.valueOf(attributes.getValue(0)));
@@ -55,24 +56,29 @@ public class ActeursContentHandler extends AbstractContentHandler {
 		String previousElementName = namesStack.peek();
 
 		if (localName.equals("acteur")) {
-			log.info("inserting Acteur " + acteur.getUid());
+			log.debug("inserting Acteur " + acteur.getUid());
 			try {
 				acteurRepo.save(acteur);
 			}
 			catch (Exception e) {
 				throw new SAXException(e);
 			}
+
+			for (Mandat m : mandats) {
+				log.debug("inserting Mandat " + m.getUid());
+				try {
+					mandatRepo.save(m);
+				}
+				catch (Exception e) {
+					throw new SAXException(e);
+				}
+			}
 		}
 		else if (localName.equals("mandat")) {
-			//acteur.getMandats().add(mandat);
+
 			mandat.setActeurId(acteur.getUid());
-			log.info("inserting Mandat " + mandat.getUid());
-			try {
-				mandatRepo.save(mandat);
-			}
-			catch (Exception e) {
-				throw new SAXException(e);
-			}
+			mandats.add(mandat);
+			//insert mandat after acteur: add it to list only
 
 			mandat = null;
 		}

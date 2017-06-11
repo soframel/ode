@@ -39,6 +39,7 @@ public class OrganesParser extends OpenDataAbstractParser {
 		catch (IOException e) {
 			log.error("IOException " + e.getMessage(), e);
 		}
+		log.info("finished parsing organes");
 	}
 
 	public ODERepository<Organe> getOrganeRepository() {

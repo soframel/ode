@@ -36,8 +36,8 @@ public class FrparProcessor {
 
 		FrparProcessor proc = context.getBean(FrparProcessor.class);
 		try {
-			proc.insertActeursFull();
 			proc.insertOrganesFull();
+			proc.insertActeursFull();
 			proc.insertScrutinsFull();
 		}
 		catch (Exception e) {
@@ -73,6 +73,7 @@ public class FrparProcessor {
 	private final String BIGFILES_DIR = "./src/test/bigresources";
 
 	public void insertActeursFull() throws Exception {
+		log.info("inserting acteurs");
 		try {
 			acteurRepository.deleteAll();
 		}
@@ -81,6 +82,7 @@ public class FrparProcessor {
 			log.warn("Exception while deleting index: " + e.getMessage());
 		}
 		acteurRepository.createIndexMapping();
+		mandatRepository.createIndexMapping();
 
 		FileSystemResourceLoader loader = new FileSystemResourceLoader();
 		Resource resource = loader.getResource(BIGFILES_DIR + "/acteurs-201702-full.xml");
@@ -97,6 +99,7 @@ public class FrparProcessor {
 	}
 
 	public void insertOrganesFull() throws Exception {
+		log.info("inserting organes");
 		try {
 			organeRepository.deleteAll();
 		}
@@ -119,6 +122,7 @@ public class FrparProcessor {
 	}
 
 	public void insertScrutinsFull() throws Exception {
+		log.info("inserting scrutins");
 		try {
 			scrutinRepository.deleteAll();
 			voteRepository.deleteAll();
@@ -144,6 +148,8 @@ public class FrparProcessor {
 		//log.info(scrutinRepository.count() + " scrutins parsed and inserted in " + (time2 - time) + " ms");
 
 		in.close();
+
+		log.info("inserting votes");
 
 		in = this.getClass().getResourceAsStream(BIGFILES_DIR + "/scrutins-20170220-full.xml");
 		in = loader.getResource(BIGFILES_DIR + "/scrutins-20170220-full.xml").getInputStream();

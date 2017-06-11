@@ -16,7 +16,14 @@
     		},	
 			"scrutinId": {
     			"type": "keyword"
+    		},
+    		"scrutin_dateScrutin": {
+    			"type": "date"
+    		},
+    		"acteur_civilite": {
+    			"type": "keyword"
     		}
+    		
     	}
     }
   }

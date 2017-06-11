@@ -25,7 +25,7 @@ public class OrganesContentHandler extends AbstractContentHandler {
 		currentCharacters = new StringBuffer();
 		namesStack.push(localName);
 		if (localName.equals("organe")) {
-			log.info("parsing organe");
+			log.debug("parsing organe");
 			organe = new Organe();
 			if (attributes.getLength() > 0) {
 				organe.setType(TypeOrgane.valueOf(attributes.getValue(0)));
@@ -39,7 +39,7 @@ public class OrganesContentHandler extends AbstractContentHandler {
 		String previousElementName = namesStack.peek();
 
 		if (localName.equals("organe")) {
-			log.info("inserting Organe " + organe.getUid());
+			log.debug("inserting Organe " + organe.getUid());
 			try {
 				repo.save(organe);
 			}

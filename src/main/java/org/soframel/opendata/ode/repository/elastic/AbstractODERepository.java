@@ -3,6 +3,8 @@ package org.soframel.opendata.ode.repository.elastic;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.ClientProtocolException;
@@ -34,6 +36,9 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 
 	@Override
 	public void save(T o) throws ClientProtocolException, IOException {
+		//cache
+		this.cache(o);
+
 		//JSON mapping
 		ObjectMapper mapper = jacksonHelper.getObjectMapper();
 		String serialized = mapper.writeValueAsString(o);
@@ -74,6 +79,9 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 
 	@Override
 	public void deleteAll() throws Exception {
+		//reset cache
+		cache.clear();
+
 		//HTTP request
 		String responseBody = null;
 		CloseableHttpClient httpclient = connection.getHttpClient();
@@ -113,5 +121,18 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 	public abstract String getId(T t);
 
 	public abstract Class<T> getTypeClass();
+
+	/** cache **/
+	private Map<String, T> cache = new HashMap<String, T>();
+
+	@Override
+	public T getCached(String id) {
+		return cache.get(id);
+	}
+
+	@Override
+	public void cache(T o) {
+		cache.put(this.getId(o), o);
+	}
 
 }

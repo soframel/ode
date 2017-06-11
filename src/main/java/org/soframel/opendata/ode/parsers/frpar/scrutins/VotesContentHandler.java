@@ -56,7 +56,7 @@ public class VotesContentHandler extends AbstractContentHandler {
 
 		if (localName.equals("votant")) {
 			vote.generateVoteId();
-			log.info("inserting vote " + vote.getVoteId());
+			log.debug("inserting vote " + vote.getVoteId());
 			try {
 				repository.save(vote);
 			}

@@ -9,4 +9,8 @@ public interface ODERepository<T> {
 	public void deleteAll() throws Exception;
 
 	public void createIndexMapping() throws Exception;
+
+	public T getCached(String id);
+
+	public void cache(T o);
 }

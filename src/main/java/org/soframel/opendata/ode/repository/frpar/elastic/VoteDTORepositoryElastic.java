@@ -1,9 +1,9 @@
 package org.soframel.opendata.ode.repository.frpar.elastic;
 
-import org.soframel.opendata.ode.domain.frpar.Vote;
+import org.soframel.opendata.ode.dto.frpar.VoteDTO;
 import org.soframel.opendata.ode.repository.elastic.AbstractODERepository;
 
-public class VoteRepositoryElastic extends AbstractODERepository<Vote> {
+public class VoteDTORepositoryElastic extends AbstractODERepository<VoteDTO> {
 
 	@Override
 	public String getElasticType() {
@@ -11,13 +11,13 @@ public class VoteRepositoryElastic extends AbstractODERepository<Vote> {
 	}
 
 	@Override
-	public String getId(Vote t) {
+	public String getId(VoteDTO t) {
 		return t.getVoteId();
 	}
 
 	@Override
-	public Class<Vote> getTypeClass() {
-		return Vote.class;
+	public Class<VoteDTO> getTypeClass() {
+		return VoteDTO.class;
 	}
 
 	@Override
