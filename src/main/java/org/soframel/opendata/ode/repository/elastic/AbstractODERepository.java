@@ -50,7 +50,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		try {
 			HttpPost post = connection.getHttpPost(getIndexName() + "/" + getElasticType() + "/" + getId(o), serialized);
 			String responseBody = httpclient.execute(post, new StringResponseHandler());
-			LOGGER.debug(">>>>> response: " + responseBody);
+			LOGGER.debug(">>>>> post response: " + responseBody);
 		}
 		finally {
 			httpclient.close();
@@ -65,7 +65,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		try {
 			HttpGet get = connection.getHttpGet(getIndexName() + "/" + getElasticType() + "/" + id);
 			responseBody = httpclient.execute(get, new StringResponseHandler());
-			LOGGER.debug(">>>>> response: " + responseBody);
+			LOGGER.debug(">>>>> get response: " + responseBody);
 		}
 		finally {
 			httpclient.close();
@@ -88,7 +88,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		try {
 			HttpDelete del = connection.getHttpDelete(getIndexName());
 			responseBody = httpclient.execute(del, new StringResponseHandler());
-			LOGGER.debug(">>>>> response: " + responseBody);
+			LOGGER.debug(">>>>> delete response: " + responseBody);
 		}
 		finally {
 			httpclient.close();
@@ -109,7 +109,7 @@ public abstract class AbstractODERepository<T> implements ODERepository<T> {
 		try {
 			HttpPut put = connection.getHttpPut(getIndexName(), mapping);
 			String responseBody = httpclient.execute(put, new StringResponseHandler());
-			LOGGER.debug(">>>>> response: " + responseBody);
+			LOGGER.debug(">>>>> create mapping response: " + responseBody);
 		}
 		finally {
 			httpclient.close();

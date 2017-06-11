@@ -38,6 +38,7 @@ public class ActeursContentHandler extends AbstractContentHandler {
 		if (localName.equals("acteur")) {
 			log.debug("parsing acteur");
 			acteur = new Acteur();
+			mandats = new ArrayList<Mandat>();
 		}
 		else if (localName.equals("mandat")) {
 			log.debug("parsing mandat");

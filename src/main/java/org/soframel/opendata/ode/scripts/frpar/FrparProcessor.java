@@ -76,6 +76,7 @@ public class FrparProcessor {
 		log.info("inserting acteurs");
 		try {
 			acteurRepository.deleteAll();
+			mandatRepository.deleteAll();
 		}
 		catch (Exception e) {
 			//not an issue, index was perhaps already deleted

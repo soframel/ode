@@ -18,7 +18,7 @@ public class StringResponseHandler implements ResponseHandler<String> {
 			return entity != null ? EntityUtils.toString(entity) : null;
 		}
 		else {
-			throw new ClientProtocolException("Unexpected response status: " + status);
+			throw new ClientProtocolException("Unexpected response status: " + status + ": " + response.getStatusLine().getReasonPhrase());
 		}
 	}
 

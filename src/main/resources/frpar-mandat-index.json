@@ -1,6 +1,5 @@
 {
   "mappings": {
-   
      "mandat": {
     	"properties": {
     		"typeMandat": {
@@ -23,5 +22,5 @@
 	        }		
     	}
     }
-  }
+   }
 }
